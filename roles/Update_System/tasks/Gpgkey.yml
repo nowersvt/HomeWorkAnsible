@@ -1,0 +1,12 @@
+---
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Add Docker GPG key
+  rpm_key:
+    key: https://download.docker.com/linux/centos/gpg
+    state: present
+  when: ansible_os_family == 'RedHat'

@@ -1,0 +1,52 @@
+- name: Install docker and run docker container
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: no
+
+    - name: Install required packages for apt over HTTPS
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Start Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Run Nginx container
+      docker_container:
+        name: nginx
+        image: nowaicevt/nginx:1.0
+        ports:
+          - "80:80"
+
+    - name: Run Golang site container
+      docker_container:
+        name: golangsite
+        image: nowaicevt/golangsite:1.0
+        ports:
+          - "8003:8003"
+
+    - name: Remove Apache site container
+      docker_container: 
+        name: golangsite
+        state: absent
+
+    - name: Remove nginx
+      docker_container: 
+        name: nginx
+        state: absent
+

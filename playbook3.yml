@@ -1,0 +1,7 @@
+---
+- name: Install and Daploy my docker container
+  hosts: all 
+  become: true
+
+  roles:
+    - Update_System

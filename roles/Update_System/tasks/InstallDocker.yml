@@ -1,0 +1,15 @@
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+  when: ansible_os_family == 'Debian'
+- name: Install Docker
+  yum:
+    name: docker
+    state: present
+  when: ansible_os_family == 'RedHat'
+- name: Install requests module
+  yum:
+    name: python3-requests
+    state: present
+  when: ansible_os_family == 'RedHat'

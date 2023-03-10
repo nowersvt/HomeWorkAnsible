@@ -1,0 +1,13 @@
+---
+# handlers file for Update_System
+- name: Start Docker
+  systemd:
+    name: docker
+    state: started
+  when: ansible_os_family == 'Debian'
+
+- name: Start Docker
+  systemd:
+    name: docker
+    state: started
+  when: ansible_os_family == 'RedHat'

@@ -1,0 +1,9 @@
+---
+# tasks file for Update_System
+
+- include_tasks: Gpgkey.yml
+- include_tasks: AddToReposetory.yml
+- include_tasks: InstallDocker.yml
+- include_tasks: ../handlers/StartDockerServic.yml
+- include_tasks: InstallAndDeploy.yml
+

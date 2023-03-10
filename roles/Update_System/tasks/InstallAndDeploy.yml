@@ -1,0 +1,14 @@
+---
+- name: Run Nginx container
+  docker_container:
+    name: nginx
+    image: nowaicevt/nginx:1.0
+    ports:
+      - "80:80"
+
+- name: Run Golang site container
+  docker_container:
+    name: golangsite
+    image: nowaicevt/golangsite:1.0
+    ports:
+      - "8003:8003"
